@@ -193,7 +193,7 @@ _____
 | Disclaimer | `/disclaimer` | btn : procceed ( redirect `/` ) ||
 | Landing | `/` | btn : back ( redirect `back`), btn: login (redirect `/login`), btn: register (redirect `/register`), btn: about us ( redirect `/about-us`) |||
 | about us | `/about-us` |btn: back ( redirect `back`) |||
-| signup | `/register` | inputs: validation with ( `onBlure`) btn: sginup (validation, fetch(`/api/v1/signup`, {method: `post`}) => redirect (`/status`))|| `{data: {name, babyName, nickname, email, password}}`|
+| signup | `/register` | inputs: validation with ( `onBlure`) btn: sginup (validation, fetch(`/api/v1/signup`, {method: `post`}) => redirect (`/status`))|| `{data: {userName, babyName, nickname, email, password}}`|
 | login | `/login` | btn: send (validation(not empty, fetch(`/api/v1/login`, {method: `post`})))|| `{data: {email, password}}`|
 | status | `/status` |btn: submit(validation not empty) btn: skip (redirect `/home`)|||
 | home | `/home` |btn: information(redirect (`/information`)), btn: stories (redirect (`/stories`)), btn: personal space (redirect (`/personal-space`))|||
