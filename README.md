@@ -23,6 +23,7 @@
 - As a user, I want to read the stories of other people who experienced loss of loved ones.
 - As a user, I want to be able to share my story when I feel I am ready for that.
 
+______________
 
 ### Main Features:
 The features we will work on during this sprint are:
@@ -37,6 +38,7 @@ The features we will work on during this sprint are:
     - Poems
 2. Other Stories & Share Your Story
 
+_______________
 
 ### Call Stack:
 - **FrontEnd**: Reactjs
@@ -44,21 +46,23 @@ The features we will work on during this sprint are:
 - **Server**: Expressjs
 - **Database**: PostgreSQL? MongoDB?
 
+________________
 
 ### Components:
-  #### Pages:
-  1. LandingPage
-  2. Login
-  3. Signup
-  4. AboutUs
-  5. Status
-  6. HomePage
-  7. Journals
-  8. Journal
-  9. EditJournal
-  10. NewJournal
-  11. Pictures
-  12. NewPicture
+#### Pages:
+1. LandingPage
+2. Login
+3. Signup
+4. AboutUs
+5. Status
+6. HomePage
+7. Journals
+8. Journal
+9. EditJournal
+10. NewJournal
+11. Pictures
+12. NewPicture
+  
 #### Common Components:
 1. Header
 2. Footer
@@ -70,6 +74,8 @@ The features we will work on during this sprint are:
 8. ServiceCard
 9. Input
 10. TextArea
+
+______________
 
 ### Analysis
 
@@ -159,9 +165,11 @@ Same thing here, action function will be triggered when `onBlur` event is fired.
 
 - `redirectOnSelect()`: when selecting an option, it redirects to the right page.
 
+__________________
+
 ### Routes 
 
-**Server Routes:**
+### Server Routes:
 
 | Page | Method | Endpoint | Functionality | Request Body | Response Body|
   | ----- | ---- | ---- | ---- | ----| ----|
@@ -176,14 +184,36 @@ Same thing here, action function will be triggered when `onBlur` event is fired.
   | Pictures | POST  | `api/v1/pictures/new` |1.Validate the image size (not over than 500 kb) <br> 2.Database: `insertPicture(title, imgSrc, userId)`| `{files: {imgSrc}}` |`{data: {id}, error:undefined}`|
   | Logout | GET |`api/v1/logout`| 1.`clearCookie()` | - | `{data:{message:'success'}, error:undefined}` |
 
-  ### Client Routes
+_____
 
-  ### Database
+### Client Side 
+
+| Page Name | Route | functions | DidMount | object format |
+| ---- | ---- | ---- | ---- | ---- |
+| Disclaimer | `/disclaimer` | btn : procceed ( redirect `/` ) ||
+| Landing | `/` | btn : back ( redirect `back`), btn: login (redirect `/login`), btn: register (redirect `/register`), btn: about us ( redirect `/about-us`) |||
+| about us | `/about-us` |btn: back ( redirect `back`) |||
+| signup | `/register` | inputs: validation with ( `onBlure`) btn: sginup (validation, fetch(`/api/v1/signup`, {method: `post`}) => redirect (`/status`))|| `{data: {name, babyName, nickname, email, password}}`|
+| login | `/login` | btn: send (validation(not empty, fetch(`/api/v1/login`, {method: `post`})))|| `{data: {email, password}}`|
+| status | `/status` |btn: submit(validation not empty) btn: skip (redirect `/home`)|||
+| home | `/home` |btn: information(redirect (`/information`)), btn: stories (redirect (`/stories`)), btn: personal space (redirect (`/personal-space`))|||
+| information | `/information`| btn: next ( redirect(`/suggestion`)), btn: back( redirect(`back`))|||
+| suggestion | `/suggestion` | btn: back (redirect `back`)|||
+| personal space | `/personal-space` | btn: pictures (redirect `/pictures`), btn: poems (redirect `/poems`), btn: exciercises (redirect `/exirecises`), btn: journal (redirect `/journals`), btn: back (redirect `back`)|||
+| journals | `/journals` |btn: add (redirect `/journals/new`), btn: edit (redirect `/journal/id`), btn: delete (show poup for delete if `ok` (fetch(`/api/v1/journals/id`, {method: `delete`}))), click card (redierct `/journals/id`)| fetch(`/api/v1/journals`, {method: `get`})||
+| edit journal | `/edit-journal/id` |btn: edit (validation => fetch(`/api/v1/journals/id`, {method: `put`})), btn: back (redirect `back`)| fetch(`/api/v1/journals/id`, {method: `get`})||
+| add journal | `/journal/new` | btn: save (validation, fetch(`/api/v1/journals/new`, {method: `post`})), btn: back (redirect `back`)||`{data: {title, content}}`|
+| single journal | `/journal/id` | btn: back (redirect `back`), btn: edit & delete the same functionality in the journals page|||
+| pictures | `/pictures` | btn: delete icon (display popup for delete if `ok` fetch(`/api/v1/pictures/id`, {method: `delete`})), btn: plus icon (redirect `/pictures/news`), btn: more pictures (render more photo add (10))| fetch(`/api/v1/pictures`, {method: `get`}) svae in state and first render just 10 photo||
+| add picture | `/pictures/new`| btn: save ( validation => fetch(`/api/v1/pictures/new`, {method: `post`})), btn: cancel (redirect `back`)|| append file in `formData`|
+
+_____
+
+### Database
 
 ![Nova Schema](databaseSchema.png)
 <br>
   To Edit, [click here]('https://dbdesigner.page.link/LkJEzgpgUMsVZnfy6')
 
-
-  ### File Structure
+_____________
 
