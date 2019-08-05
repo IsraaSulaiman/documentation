@@ -179,9 +179,9 @@ __________________
   | Journals | DELETE | `api/v1/journals/:id`|1.Database: `deleteJournal(id, userId)`| - | `{data: {id}, error:undefined}` |
  | Journal | PUT | `api/v1/journals/:id`| 1.Validation <br> 2.Database: `updateJournal(id, userId)`| `{data: {title, content}}`| `{data: {id}, error:undefined}` |
   | Journal | GET | `api/v1/journals/:id` |1.Database: `selectJournal(id, userId)` | - |`{data:{id, title, content}, error:undefined}` |
-  | Journal |POST | `api/v1/journal/new` |1.Database: `insertJournal(title, content, userId)`|`{data: {title, content}}`| `{data: {id}, error:undefined}`|
+  | Journal |POST | `api/v1/journal` |1.Database: `insertJournal(title, content, userId)`|`{data: {title, content}}`| `{data: {id}, error:undefined}`|
  | Pictures | GET | `api/v1/pictures` | 1.Database: `selectPictures(userId)`| - | `{data: {pictures:[{id, imgSrc, title}, {id, imgSrc, title}]}, error:undefined}` |
-  | Pictures | POST  | `api/v1/pictures/new` |1.Validate the image size (not over than 500 kb) <br> 2.Database: `insertPicture(title, imgSrc, userId)`| `{files: {imgSrc}}` |`{data: {id}, error:undefined}`|
+  | Pictures | POST  | `api/v1/pictures` |1.Validate the image size (not over than 500 kb) <br> 2.Database: `insertPicture(title, imgSrc, userId)`| `{files: {imgSrc}}` |`{data: {id}, error:undefined}`|
   | Logout | GET |`api/v1/logout`| 1.`clearCookie()` | - | `{data:{message:'success'}, error:undefined}` |
 
 _____
@@ -197,15 +197,15 @@ _____
 | login | `/login` | btn: send (validation(not empty, fetch(`/api/v1/login`, {method: `post`})))|| `{data: {email, password}}`|
 | status | `/status` |btn: submit(validation not empty) btn: skip (redirect `/home`)|||
 | home | `/home` |btn: information(redirect (`/information`)), btn: stories (redirect (`/stories`)), btn: personal space (redirect (`/personal-space`))|||
-| information | `/information`| btn: next ( redirect(`/suggestion`)), btn: back( redirect(`back`))|||
-| suggestion | `/suggestion` | btn: back (redirect `back`)|||
-| personal space | `/personal-space` | btn: pictures (redirect `/pictures`), btn: poems (redirect `/poems`), btn: exciercises (redirect `/exirecises`), btn: journal (redirect `/journals`), btn: back (redirect `back`)|||
-| journals | `/journals` |btn: add (redirect `/journals/new`), btn: edit (redirect `/journal/id`), btn: delete (show poup for delete if `ok` (fetch(`/api/v1/journals/id`, {method: `delete`}))), click card (redierct `/journals/id`)| fetch(`/api/v1/journals`, {method: `get`})||
+| information | `/information`| btn: next ( redirect(`/suggestions`)), btn: back( redirect(`back`))|||
+| suggestion | `/suggestions` | btn: back (redirect `back`)|||
+| personal space | `/personal-space` | btn: pictures (redirect `/pictures`), btn: poems (redirect `/poems`), btn: exciercises (redirect `/exercises`), btn: journal (redirect `/journals`), btn: back (redirect `back`)|||
+| journals | `/journals` |btn: add (redirect `/journals`), btn: edit (redirect `/journals/id`), btn: delete (show poup for delete if `ok` (fetch(`/api/v1/journals/id`, {method: `delete`}))), click card (redierct `/journals/id`)| fetch(`/api/v1/journals`, {method: `get`})||
 | edit journal | `/edit-journal/id` |btn: edit (validation => fetch(`/api/v1/journals/id`, {method: `put`})), btn: back (redirect `back`)| fetch(`/api/v1/journals/id`, {method: `get`})||
-| add journal | `/journal/new` | btn: save (validation, fetch(`/api/v1/journals/new`, {method: `post`})), btn: back (redirect `back`)||`{data: {title, content}}`|
-| single journal | `/journal/id` | btn: back (redirect `back`), btn: edit & delete the same functionality in the journals page|||
-| pictures | `/pictures` | btn: delete icon (display popup for delete if `ok` fetch(`/api/v1/pictures/id`, {method: `delete`})), btn: plus icon (redirect `/pictures/news`), btn: more pictures (render more photo add (10))| fetch(`/api/v1/pictures`, {method: `get`}) svae in state and first render just 10 photo||
-| add picture | `/pictures/new`| btn: save ( validation => fetch(`/api/v1/pictures/new`, {method: `post`})), btn: cancel (redirect `back`)|| append file in `formData`|
+| add journal | `/journals` | btn: save (validation, fetch(`/api/v1/journals`, {method: `post`})), btn: back (redirect `back`)||`{data: {title, content}}`|
+| single journal | `/journals/id` | btn: back (redirect `back`), btn: edit & delete the same functionality in the journals page|||
+| pictures | `/pictures` | btn: delete icon (display popup for delete if `ok` fetch(`/api/v1/pictures/id`, {method: `delete`})), btn: plus icon (redirect `/pictures`), btn: more pictures (render more photo add (10))| fetch(`/api/v1/pictures`, {method: `get`}) svae in state and first render just 10 photo||
+| add picture | `/pictures`| btn: save ( validation => fetch(`/api/v1/pictures`, {method: `post`})), btn: cancel (redirect `back`)|| append file in `formData`|
 
 _____
 
