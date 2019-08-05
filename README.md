@@ -211,9 +211,5 @@ _____
 
 ### Database
 
-![Nova Schema](databaseSchema.png)
-<br>
-  To Edit, [click here]('https://dbdesigner.page.link/LkJEzgpgUMsVZnfy6')
-
 _____________
 
